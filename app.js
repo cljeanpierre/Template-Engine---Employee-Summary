@@ -11,6 +11,41 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 
 
+
+//make a function to use inquirer to get info on your manager
+//once our have the info, you will make a new manager with user.answers weith your manager class
+function createManager(){
+    console.log("Please put in your manager info...");
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "managerName",
+            message: "What is the name of your manager?"
+        },{
+            type: "input",
+            name: "managerName",
+            message: "What is the name of your manager?"
+        }
+    ]).then(results => {
+        const manager = new Manager(results.managerName, );
+        //push the new manager to an array
+        //run a createTeam function
+    })
+}
+
+//in createDevTeam function, youll want to switch between creating an engineer, intern, or build out the team
+
+//create a function to make an engineer
+
+//create a function to make an intern
+
+//create a function to build out your team
+
+
+
+
+
+
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
