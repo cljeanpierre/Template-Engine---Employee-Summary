@@ -58,7 +58,7 @@ const buildTeam = [
         ]
     }
 ]
-//in createDevTeam function, youll want to switch between creating an engineer, intern, or build out the team
+//in createDevTeam function, switch between creating an engineer, intern, or build out the team
 async function createDevTeam() {
     return inquirer.prompt(buildTeam).then(function (resp) {
         if (resp.nextMember === "Engineer") {
@@ -139,10 +139,22 @@ function createIntern(){
 }
 //create a function to build out your team
 
-function teamAssembled ()
+function teamAssembled () {
+    console.log (myTeam);
+    if (!fs.existsSync (OUTPUT_DIR)) {
+        fs.mkdirSync (OUTPUT_DIR)
+    }
+    fs.writeFileSync (outputPath, render (myTeam), "utf-8");
+}
 
+function init() {
+    inquirer.prompt(createManager)
+    .then((inquirerResponses) => {
 
+    })
+}
 
+init();
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
