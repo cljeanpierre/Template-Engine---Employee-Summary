@@ -40,7 +40,7 @@ function createManager(){
     ]).then(results => {
         const manager = new Manager(results.managerName, results.idNumber, results.emailAddress, results.officeNumber);
         //push the new manager to an array
-        team.push(manager)
+        myTeam.push(manager);
         //run a createTeam function
         createDevTeam();
     })
@@ -59,7 +59,19 @@ const buildTeam = [
     }
 ]
 //in createDevTeam function, youll want to switch between creating an engineer, intern, or build out the team
-
+async function createDevTeam() {
+    return inquirer.prompt(buildTeam).then(function (resp) {
+        if (resp.nextMember === "Engineer") {
+            createEngineer();
+        }
+        else if (resp.nextMember === "Intern") {
+            createIntern();
+        }
+        else {
+            teamAssembled();
+        }
+    })
+}
 
 //create a function to make an engineer
 function createEngineer(){
@@ -67,35 +79,67 @@ function createEngineer(){
     inquirer.prompt([
         {
             type: "input",
-            name: "engineer",
-            message: "What is your manager's name?"
+            name: "engineerName",
+            message: "What is your engineer's name?"
         },
         {
             type: "input",
-            name: "id",
-            message: "What is your manager's Id number?"
+            name: "idNumber",
+            message: "What is your engineer's Id number?"
         },
         {
             type: "input",
-            name: "email",
-            message: "What is your manager's email address?"
+            name: "emailAddress",
+            message: "What is your engineer's email address?"
         },
         {
             type: "input",
-            name: "officeNumber",
-            message: "What is your manager's office number?"
+            name: "github",
+            message: "What is your engineer's github username?"
         }
     ]).then(results => {
-        const manager = new Manager(results.managerName, );
+        const engineer = new Engineer(results.engineerName, results.idNumber, results.emailAddress, results.github);
         //push the new manager to an array
+        myteam.push(engineer);
         //run a createTeam function
+        createDevTeam();
     })
 }
 //create a function to make an intern
-
+function createIntern(){
+    console.log("Please type in your Intern's information...");
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "internName",
+            message: "What is your intern's name?"
+        },
+        {
+            type: "input",
+            name: "idNumber",
+            message: "What is your intern's Id number?"
+        },
+        {
+            type: "input",
+            name: "emailAddress",
+            message: "What is your intern's email address?"
+        },
+        {
+            type: "input",
+            name: "school",
+            message: "What is the name of your intern's school?"
+        }
+    ]).then(results => {
+        const intern = new Intern(results.internName, results.idNumber, results.emailAddress, results.school);
+        //push the new manager to an array
+        myteam.push(intern);
+        //run a createTeam function
+        createDevTeam();
+    })
+}
 //create a function to build out your team
 
-
+function teamAssembled ()
 
 
 
