@@ -61,14 +61,19 @@ const buildTeam = [
 //in createDevTeam function, switch between creating an engineer, intern, or build out the team
 async function createDevTeam() {
     return inquirer.prompt(buildTeam).then(function (resp) {
-        if (resp.nextMember === "Engineer") {
-            createEngineer();
+        try {
+            if (resp.nextMember === "Engineer") {
+                createEngineer();
+            }
+            else if (resp.nextMember === "Intern") {
+                createIntern();
+            }
+            else {
+                teamAssembled();
+            }
         }
-        else if (resp.nextMember === "Intern") {
-            createIntern();
-        }
-        else {
-            teamAssembled();
+        catch (error) {
+            throw Error (error);
         }
     })
 }
@@ -148,10 +153,7 @@ function teamAssembled () {
 }
 
 function init() {
-    inquirer.prompt(createManager)
-    .then((inquirerResponses) => {
-
-    })
+    createManager ();
 }
 
 init();
