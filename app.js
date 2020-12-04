@@ -9,36 +9,42 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const Employee = require("./lib/Employee");
 
 myTeam = [];
 
 //make a function to use inquirer to get info on your manager
 //Then once I have the info, make a new manager with user.answers with your manager class
 function createManager(){
-    console.log("Please type in your manager's information...");
     inquirer.prompt([
         {
             type: "input",
             name: "managerName",
-            message: "What is your manager's name?",
+            message: "What is the manager's name?",
         },
         {
             type: "input",
             name: "idNumber",
-            message: "What is your manager's Id number?",
+            message: "What is the manager's Id number?",
         },
         {
             type: "input",
             name: "emailAddress",
-            message: "What is your manager's email address?"
+            message: "What is the manager's email address?",
         },
         {
             type: "input",
             name: "officeNumber",
-            message: "What is your manager's office number?",
+            message: "What is the manager's office number?",
+        },
+        {
+            type: "input",
+            name: "moreMembers",
+            message: "Is there anyone else on your team?",
+            choices: ["yes", "no"]
         }
     ]).then(results => {
-        const manager = new Manager(results.managerName, results.idNumber, results.emailAddress, results.officeNumber);
+        const manager = new Manager(results.managerName, results.idNumber, results.emailAddress, results.officeNumber, results.moreMembers);
         //push the new manager to an array
         myTeam.push(manager);
         //run a createTeam function
@@ -46,7 +52,8 @@ function createManager(){
     })
 }
 
-const buildTeam = [
+async function buildTeam () { 
+    inquirer.prompt ([
     {
         type: "list",
         name: "teamMembers",
@@ -57,19 +64,45 @@ const buildTeam = [
             "Employee",
         ]
     }
-]
+]).then(results => {
+    const members = new Members(results.teamMembers);
+    createDevTeam();
+})
+}
+
+async function moreMembers() {
+    return inquirer.prompt(createDevTeam).then(function (results) {
+        try {
+            if (results.moreMembers === 'yes') {
+                createDevTeam();
+            } else {
+                return "Your team has been assembled.";
+            }
+        }
+        catch (error) {
+            throw Error (error);
+        }
+    })
+}
 //in createDevTeam function, switch between creating an engineer, intern, or build out the team
 async function createDevTeam() {
     return inquirer.prompt(buildTeam).then(function (resp) {
         try {
-            if (resp.nextMember === "Engineer") {
-                createEngineer();
-            }
-            else if (resp.nextMember === "Intern") {
-                createIntern();
-            }
-            else {
-                teamAssembled();
+            switch (resp.choices) {
+                case 'engineer':
+                return createEngineer();
+                break;
+
+                case 'intern':
+                return createIntern();
+                break;
+
+                case 'employee':
+                return createEmployee();
+                break;
+
+                default: 'quit'
+                return teamAssembled();
             }
         }
         catch (error) {
@@ -80,27 +113,26 @@ async function createDevTeam() {
 
 //create a function to make an engineer
 function createEngineer(){
-    console.log("Please type in your Engineer's information...");
     inquirer.prompt([
         {
             type: "input",
             name: "engineerName",
-            message: "What is your engineer's name?"
+            message: "What is the engineer's name?"
         },
         {
             type: "input",
             name: "idNumber",
-            message: "What is your engineer's Id number?"
+            message: "What is the engineer's Id number?"
         },
         {
             type: "input",
             name: "emailAddress",
-            message: "What is your engineer's email address?"
+            message: "What is the engineer's email address?"
         },
         {
             type: "input",
             name: "github",
-            message: "What is your engineer's github username?"
+            message: "What is the engineer's github username?"
         }
     ]).then(results => {
         const engineer = new Engineer(results.engineerName, results.idNumber, results.emailAddress, results.github);
@@ -112,32 +144,57 @@ function createEngineer(){
 }
 //create a function to make an intern
 function createIntern(){
-    console.log("Please type in your Intern's information...");
     inquirer.prompt([
         {
             type: "input",
             name: "internName",
-            message: "What is your intern's name?"
+            message: "What is the intern's name?"
         },
         {
             type: "input",
             name: "idNumber",
-            message: "What is your intern's Id number?"
+            message: "What is the intern's Id number?"
         },
         {
             type: "input",
             name: "emailAddress",
-            message: "What is your intern's email address?"
+            message: "What is the intern's email address?"
         },
         {
             type: "input",
             name: "school",
-            message: "What is the name of your intern's school?"
+            message: "What is the name of the intern's school?"
         }
     ]).then(results => {
         const intern = new Intern(results.internName, results.idNumber, results.emailAddress, results.school);
         //push the new manager to an array
         myteam.push(intern);
+        //run a createTeam function
+        createDevTeam();
+    })
+}
+
+function createEmployee(){
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "employeeName",
+            message: "What is the employee's name?"
+        },
+        {
+            type: "input",
+            name: "idNumber",
+            message: "What is the employee's Id number?"
+        },
+        {
+            type: "input",
+            name: "emailAddress",
+            message: "What is the employee's email address?"
+        },
+    ]).then(results => {
+        const employee = new Employee(results.employeeName, results.idNumber, results.emailAddress);
+        //push the new manager to an array
+        myteam.push(employee);
         //run a createTeam function
         createDevTeam();
     })
