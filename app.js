@@ -16,33 +16,60 @@ myTeam = [];
 //make a function to use inquirer to get info on your manager
 //Then once I have the info, make a new manager with user.answers with your manager class
 function createManager(){
+    console.log("Begin building your team.")
     inquirer.prompt([
         {
             type: "input",
             name: "managerName",
             message: "What is the manager's name?",
+            validate: result => {
+                if (result !=="") {
+                    return true
+                }
+                return "You must enter at least one character."
+            }
         },
         {
             type: "input",
             name: "idNumber",
             message: "What is the manager's Id number?",
+            validate: result => {
+                const pass = Number.isInteger(result);
+                if (pass) {
+                    return true;
+                }
+                return "You must enter a valid number.";
+            }
         },
         {
             type: "input",
             name: "emailAddress",
             message: "What is the manager's email address?",
+            validate: result => {
+                if (result == /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/){
+                    return true
+                }
+                    return "You must enter a valid email address."
+            }
         },
         {
             type: "input",
             name: "officeNumber",
             message: "What is the manager's office number?",
+            validate: result => {
+                const pass = Number.isInteger(result);
+                if (pass) {
+                    return true;
+                }
+                return "You must enter a valid number."
+            }
         },
-        {
-            type: "input",
-            name: "moreMembers",
-            message: "Is there anyone else on your team?",
-            choices: ["yes", "no"]
-        }
+        // {
+        //     type: "input",
+        //     name: "moreMembers",
+        //     message: "Is there anyone else on your team?",
+        //     choices: ["yes", "no"]
+        // }
     ]).then(results => {
         const manager = new Manager(results.managerName, results.idNumber, results.emailAddress, results.officeNumber, results.moreMembers);
         //push the new manager to an array
