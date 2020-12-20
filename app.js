@@ -163,6 +163,38 @@ function createEngineer(){
     })
 }
 
+//create a function to add an intern
+function createIntern(){
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "internName",
+            message: "What is the intern's name?"
+        },
+        {
+            type: "input",
+            name: "idNumber",
+            message: "What is the intern's Id number?"
+        },
+        {
+            type: "input",
+            name: "emailAddress",
+            message: "What is the intern's email address?"
+        },
+        {
+            type: "input",
+            name: "school",
+            message: "What is the name of the intern's school?"
+        }
+    ]).then(results => {
+        const intern = new Intern(results.internName, results.idNumber, results.emailAddress, results.school);
+        //push the new manager to an array
+        myteam.push(intern);
+        //run a createTeam function
+        createDevTeam();
+    })
+}
+
 async function buildTeam () { 
     inquirer.prompt ([
     {
@@ -197,37 +229,7 @@ async function moreMembers() {
 }
 
 
-//create a function to make an intern
-function createIntern(){
-    inquirer.prompt([
-        {
-            type: "input",
-            name: "internName",
-            message: "What is the intern's name?"
-        },
-        {
-            type: "input",
-            name: "idNumber",
-            message: "What is the intern's Id number?"
-        },
-        {
-            type: "input",
-            name: "emailAddress",
-            message: "What is the intern's email address?"
-        },
-        {
-            type: "input",
-            name: "school",
-            message: "What is the name of the intern's school?"
-        }
-    ]).then(results => {
-        const intern = new Intern(results.internName, results.idNumber, results.emailAddress, results.school);
-        //push the new manager to an array
-        myteam.push(intern);
-        //run a createTeam function
-        createDevTeam();
-    })
-}
+
 
 function createEmployee(){
     inquirer.prompt([
