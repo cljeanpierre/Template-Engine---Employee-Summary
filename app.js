@@ -221,22 +221,42 @@ function createIntern(){
     })
 }
 
+//create function to add an employee
 function createEmployee(){
     inquirer.prompt([
         {
             type: "input",
             name: "employeeName",
-            message: "What is the employee's name?"
+            message: "What is the employee's name?",
+            validate: result => {
+                if (result !=="") {
+                    return true
+                }
+                return "You must enter at least one character.";
+            }
         },
         {
             type: "input",
             name: "idNumber",
-            message: "What is the employee's Id number?"
+            message: "What is the employee's Id number?",
+            validate: result => {
+                const pass = Number.isInteger(result);
+                if (pass) {
+                    return true;
+                }
+                return "You must enter a valid number.";
+            }
         },
         {
             type: "input",
             name: "emailAddress",
-            message: "What is the employee's email address?"
+            message: "What is the employee's email address?",
+            validate: result => {
+                if (result == /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/){
+                    return true
+                }
+                    return "You must enter a valid email address.";
+            }
         },
     ]).then(results => {
         const employee = new Employee(results.employeeName, results.idNumber, results.emailAddress);
