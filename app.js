@@ -64,14 +64,8 @@ function createManager(){
                 return "You must enter a valid number."
             }
         },
-        // {
-        //     type: "input",
-        //     name: "moreMembers",
-        //     message: "Is there anyone else on your team?",
-        //     choices: ["yes", "no"]
-        // }
     ]).then(results => {
-        const manager = new Manager(results.managerName, results.idNumber, results.emailAddress, results.officeNumber, results.moreMembers);
+        const manager = new Manager(results.managerName, results.idNumber, results.emailAddress, results.officeNumber);
         //push the new manager to an array
         myTeam.push(manager);
         //run a createTeam function
