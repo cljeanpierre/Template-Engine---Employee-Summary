@@ -26,7 +26,7 @@ function createManager(){
                 if (result !=="") {
                     return true
                 }
-                return "You must enter at least one character."
+                return "You must enter at least one character.";
             }
         },
         {
@@ -49,7 +49,7 @@ function createManager(){
                 if (result == /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/){
                     return true
                 }
-                    return "You must enter a valid email address."
+                    return "You must enter a valid email address.";
             }
         },
         {
@@ -61,7 +61,7 @@ function createManager(){
                 if (pass) {
                     return true;
                 }
-                return "You must enter a valid number."
+                return "You must enter a valid number.";
             }
         },
     ]).then(results => {
@@ -106,28 +106,53 @@ function createDevTeam() {
     });
 }
 
-//create a function to make an engineer
+//create a function to add an engineer
 function createEngineer(){
     inquirer.prompt([
         {
             type: "input",
             name: "engineerName",
-            message: "What is the engineer's name?"
+            message: "What is the engineer's name?",
+            validate: result => {
+                if (result !=="") {
+                    return true
+                }
+                return "You must enter at least one character.";
+            }
         },
         {
             type: "input",
             name: "idNumber",
-            message: "What is the engineer's Id number?"
+            message: "What is the engineer's Id number?",
+            validate: result => {
+                const pass = Number.isInteger(result);
+                if (pass) {
+                    return true;
+                }
+                return "You must enter a valid number.";
+            }
         },
         {
             type: "input",
             name: "emailAddress",
-            message: "What is the engineer's email address?"
+            message: "What is the engineer's email address?",
+            validate: result => {
+                if (result == /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/){
+                    return true
+                }
+                    return "You must enter a valid email address.";
+            }
         },
         {
             type: "input",
             name: "github",
-            message: "What is the engineer's github username?"
+            message: "What is the engineer's github username?",
+            validate: result => {
+                if (result !=="") {
+                    return true
+                }
+                return "You must enter at least one character.";
+            }
         }
     ]).then(results => {
         const engineer = new Engineer(results.engineerName, results.idNumber, results.emailAddress, results.github);
