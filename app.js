@@ -83,6 +83,7 @@ function createDevTeam() {
         choices: [
             "Engineer",
             "Intern",
+            "Employee",
             "There are no more team members to add.  I am ready to assemble my team."
         ]
         }
@@ -220,6 +221,32 @@ function createIntern(){
     })
 }
 
+function createEmployee(){
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "employeeName",
+            message: "What is the employee's name?"
+        },
+        {
+            type: "input",
+            name: "idNumber",
+            message: "What is the employee's Id number?"
+        },
+        {
+            type: "input",
+            name: "emailAddress",
+            message: "What is the employee's email address?"
+        },
+    ]).then(results => {
+        const employee = new Employee(results.employeeName, results.idNumber, results.emailAddress);
+        //push the new manager to an array
+        myteam.push(employee);
+        //run a createTeam function
+        createDevTeam();
+    })
+}
+
 async function buildTeam () { 
     inquirer.prompt ([
     {
@@ -254,33 +281,6 @@ async function moreMembers() {
 }
 
 
-
-
-function createEmployee(){
-    inquirer.prompt([
-        {
-            type: "input",
-            name: "employeeName",
-            message: "What is the employee's name?"
-        },
-        {
-            type: "input",
-            name: "idNumber",
-            message: "What is the employee's Id number?"
-        },
-        {
-            type: "input",
-            name: "emailAddress",
-            message: "What is the employee's email address?"
-        },
-    ]).then(results => {
-        const employee = new Employee(results.employeeName, results.idNumber, results.emailAddress);
-        //push the new manager to an array
-        myteam.push(employee);
-        //run a createTeam function
-        createDevTeam();
-    })
-}
 //create a function to build out your team
 
 function assembleTeam () {
