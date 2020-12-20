@@ -73,6 +73,39 @@ function createManager(){
     })
 }
 
+//in createDevTeam function, switch between creating an engineer, intern, or build out the team
+function createDevTeam() {
+    inquirer.prompt([
+        {
+        type: "list",
+        name: "memberChoice",
+        message: "Which type of team member would you like to add?",
+        choices: [
+            "Engineer",
+            "Intern",
+            "There are no more team members to add.  I am ready to assemble my team."
+        ]
+        }
+    ]).then(function (respondentChoice) {
+            switch (respondentChoice.memberChoice) {
+            case 'Engineer':
+                return createEngineer();
+                break;
+        
+            case 'Intern':
+                return createIntern();
+                break;
+
+            case 'Employee':
+                return createEmployee();
+                break;
+
+            default: 'quit'
+                return assembleTeam();
+            }
+    });
+}
+
 async function buildTeam () { 
     inquirer.prompt ([
     {
@@ -98,32 +131,6 @@ async function moreMembers() {
                 createDevTeam();
             } else {
                 return "Your team has been assembled.";
-            }
-        }
-        catch (error) {
-            throw Error (error);
-        }
-    })
-}
-//in createDevTeam function, switch between creating an engineer, intern, or build out the team
-async function createDevTeam() {
-    return inquirer.prompt(buildTeam).then(function (resp) {
-        try {
-            switch (resp.choices) {
-                case 'engineer':
-                return createEngineer();
-                break;
-
-                case 'intern':
-                return createIntern();
-                break;
-
-                case 'employee':
-                return createEmployee();
-                break;
-
-                default: 'quit'
-                return teamAssembled();
             }
         }
         catch (error) {
@@ -222,7 +229,7 @@ function createEmployee(){
 }
 //create a function to build out your team
 
-function teamAssembled () {
+function assembleTeam () {
     console.log (myTeam);
     if (!fs.existsSync (OUTPUT_DIR)) {
         fs.mkdirSync (OUTPUT_DIR)
