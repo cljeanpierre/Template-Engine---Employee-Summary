@@ -106,6 +106,38 @@ function createDevTeam() {
     });
 }
 
+//create a function to make an engineer
+function createEngineer(){
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "engineerName",
+            message: "What is the engineer's name?"
+        },
+        {
+            type: "input",
+            name: "idNumber",
+            message: "What is the engineer's Id number?"
+        },
+        {
+            type: "input",
+            name: "emailAddress",
+            message: "What is the engineer's email address?"
+        },
+        {
+            type: "input",
+            name: "github",
+            message: "What is the engineer's github username?"
+        }
+    ]).then(results => {
+        const engineer = new Engineer(results.engineerName, results.idNumber, results.emailAddress, results.github);
+        //push the new manager to an array
+        myteam.push(engineer);
+        //run a createTeam function
+        createDevTeam();
+    })
+}
+
 async function buildTeam () { 
     inquirer.prompt ([
     {
@@ -139,37 +171,7 @@ async function moreMembers() {
     })
 }
 
-//create a function to make an engineer
-function createEngineer(){
-    inquirer.prompt([
-        {
-            type: "input",
-            name: "engineerName",
-            message: "What is the engineer's name?"
-        },
-        {
-            type: "input",
-            name: "idNumber",
-            message: "What is the engineer's Id number?"
-        },
-        {
-            type: "input",
-            name: "emailAddress",
-            message: "What is the engineer's email address?"
-        },
-        {
-            type: "input",
-            name: "github",
-            message: "What is the engineer's github username?"
-        }
-    ]).then(results => {
-        const engineer = new Engineer(results.engineerName, results.idNumber, results.emailAddress, results.github);
-        //push the new manager to an array
-        myteam.push(engineer);
-        //run a createTeam function
-        createDevTeam();
-    })
-}
+
 //create a function to make an intern
 function createIntern(){
     inquirer.prompt([
