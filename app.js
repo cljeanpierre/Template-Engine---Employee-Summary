@@ -46,7 +46,10 @@ function createManager(){
             name: "emailAddress",
             message: "What is the manager's email address?",
             validate: result => {
-                if (result == /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/){
+                const pass = answer.match(
+                    /\S+@\S+\.\S+/
+                );             
+                if (pass) {
                     return true
                 }
                     return "You must enter a valid email address.";
@@ -138,7 +141,10 @@ function createEngineer(){
             name: "emailAddress",
             message: "What is the engineer's email address?",
             validate: result => {
-                if (result == /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/){
+                const pass = answer.match(
+                    /\S+@\S+\.\S+/
+                );             
+                if (pass) {
                     return true
                 }
                     return "You must enter a valid email address.";
@@ -195,7 +201,10 @@ function createIntern(){
             name: "emailAddress",
             message: "What is the intern's email address?",
             validate: result => {
-                if (result == /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/){
+                const pass = answer.match(
+                    /\S+@\S+\.\S+/
+                );             
+                if (pass) {
                     return true
                 }
                     return "You must enter a valid email address.";
@@ -252,7 +261,10 @@ function createEmployee(){
             name: "emailAddress",
             message: "What is the employee's email address?",
             validate: result => {
-                if (result == /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/){
+                const pass = answer.match(
+                    /\S+@\S+\.\S+/
+                );             
+                if (pass) {
                     return true
                 }
                     return "You must enter a valid email address.";
