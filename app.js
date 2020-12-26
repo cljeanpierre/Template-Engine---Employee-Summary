@@ -34,7 +34,7 @@ function createManager(){
             name: "idNumber",
             message: "What is the manager's Id number?",
             validate: result => {
-                const pass = Number.isInteger(result);
+                const pass = result.match(/^[1-9]\d*$/)
                 if (pass) {
                     return true;
                 }
@@ -57,7 +57,7 @@ function createManager(){
             name: "officeNumber",
             message: "What is the manager's office number?",
             validate: result => {
-                const pass = Number.isInteger(result);
+                const pass = result.match(/^[1-9]\d*$/);
                 if (pass) {
                     return true;
                 }
@@ -126,7 +126,7 @@ function createEngineer(){
             name: "idNumber",
             message: "What is the engineer's Id number?",
             validate: result => {
-                const pass = Number.isInteger(result);
+                const pass = result.match(/^[1-9]\d*$/);
                 if (pass) {
                     return true;
                 }
@@ -183,7 +183,7 @@ function createIntern(){
             name: "idNumber",
             message: "What is the intern's Id number?",
             validate: result => {
-                const pass = Number.isInteger(result);
+                const pass = result.match(/^[1-9]\d*$/);
                 if (pass) {
                     return true;
                 }
@@ -240,7 +240,7 @@ function createEmployee(){
             name: "idNumber",
             message: "What is the employee's Id number?",
             validate: result => {
-                const pass = Number.isInteger(result);
+                const pass = result.match(/^[1-9]\d*$/);
                 if (pass) {
                     return true;
                 }
