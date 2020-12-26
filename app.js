@@ -46,7 +46,7 @@ function createManager(){
             name: "emailAddress",
             message: "What is the manager's email address?",
             validate: result => {
-                const pass = answer.match(
+                const pass = result.match(
                     /\S+@\S+\.\S+/
                 );             
                 if (pass) {
@@ -141,7 +141,7 @@ function createEngineer(){
             name: "emailAddress",
             message: "What is the engineer's email address?",
             validate: result => {
-                const pass = answer.match(
+                const pass = result.match(
                     /\S+@\S+\.\S+/
                 );             
                 if (pass) {
@@ -164,7 +164,7 @@ function createEngineer(){
     ]).then(results => {
         const engineer = new Engineer(results.engineerName, results.idNumber, results.emailAddress, results.github);
         //push the new manager to an array
-        myteam.push(engineer);
+        myTeam.push(engineer);
         //run a createTeam function
         createDevTeam();
     })
@@ -201,7 +201,7 @@ function createIntern(){
             name: "emailAddress",
             message: "What is the intern's email address?",
             validate: result => {
-                const pass = answer.match(
+                const pass = result.match(
                     /\S+@\S+\.\S+/
                 );             
                 if (pass) {
@@ -215,8 +215,8 @@ function createIntern(){
             name: "school",
             message: "What is the name of the intern's school?",
             validate: result => {
-                if (result !=="") {
-                    return true
+                if (result !== "") {
+                    return true;
                 }
                 return "You must enter at least one character.";
             }
@@ -224,7 +224,7 @@ function createIntern(){
     ]).then(results => {
         const intern = new Intern(results.internName, results.idNumber, results.emailAddress, results.school);
         //push the new manager to an array
-        myteam.push(intern);
+        myTeam.push(intern);
         //run a createTeam function
         createDevTeam();
     })
@@ -261,7 +261,7 @@ function createEmployee(){
             name: "emailAddress",
             message: "What is the employee's email address?",
             validate: result => {
-                const pass = answer.match(
+                const pass = result.match(
                     /\S+@\S+\.\S+/
                 );             
                 if (pass) {
@@ -273,7 +273,7 @@ function createEmployee(){
     ]).then(results => {
         const employee = new Employee(results.employeeName, results.idNumber, results.emailAddress);
         //push the new manager to an array
-        myteam.push(employee);
+        myTeam.push(employee);
         //run a createTeam function
         createDevTeam();
     })
