@@ -14,5 +14,7 @@ Here is a [video demonstration](https://drive.google.com/file/d/14MQZ7KT2zosuHVd
 
 # Technologies
 
+This application runs on Node.js and utilizes the [Inquirer npm package](https://www.npmjs.com/package/inquirer) to prompt the user for information based on their role with the company. [Jest](https://jestjs.io/) is used to run the provided tests.
+
 ![](images/TeamProfileGenerator.gif)
 ![](images/TeamWebpage.png)
