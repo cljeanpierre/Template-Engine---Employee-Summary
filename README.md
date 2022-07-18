@@ -10,6 +10,8 @@ SO THAT I have quick access to emails and GitHub profiles
 
 # How to Use
 
+Here is a [video demonstration](https://drive.google.com/file/d/14MQZ7KT2zosuHVdwBsU1x97e2cHg9si-/view?usp=sharing) of how to use this application.
+
 # Technologies
 
 ![](images/TeamProfileGenerator.gif)
