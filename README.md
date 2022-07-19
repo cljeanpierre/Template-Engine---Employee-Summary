@@ -4,9 +4,9 @@ This project uses a Node Command Line Interface that records information about e
 
 # User Story
 
-AS A manager
-I WANT to generate a webpage that displays my team's basic info
-SO THAT I have quick access to emails and GitHub profiles
+AS A manager <br />
+I WANT to generate a webpage that displays my team's basic info <br />
+SO THAT I have quick access to emails and GitHub profiles <br />
 
 # How to Use
 
