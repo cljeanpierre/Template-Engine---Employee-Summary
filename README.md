@@ -12,9 +12,11 @@ SO THAT I have quick access to emails and GitHub profiles <br />
 
 Here is a [video demonstration](https://drive.google.com/file/d/14MQZ7KT2zosuHVdwBsU1x97e2cHg9si-/view?usp=sharing) of how to use this application.
 
+![](images/TeamProfileGenerator.gif)
+
 # Technologies
 
 This application runs on Node.js and utilizes the [Inquirer npm package](https://www.npmjs.com/package/inquirer) to prompt the user for information based on their role with the company. [Jest](https://jestjs.io/) is used to run the provided tests.
 
-![](images/TeamProfileGenerator.gif)
+
 
